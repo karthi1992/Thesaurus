@@ -2,7 +2,7 @@
 The API for managing synonyms works with a list of words, it uses a map, where the value for each entry in the map is a set of synonyms for a term.
 
 Add the following field type definition in schema.xml
->     <fieldType name="managed_en" positionIncrementGap="100">
+>     <fieldType name="text_general" positionIncrementGap="100">
 >     <analyzer>    
 >     <tokenizer class="solr.StandardTokenizerFactory"/>    
 >     <filter class="solr.ManagedStopFilterFactory"   managed="english" />     
@@ -40,17 +40,17 @@ To determine the synonyms for a specific term, you send a GET request for the ch
 >     curl -X GET -H 'Content-type:application/json' --data-binary "http://localhost:8983/solr/mycollection/schema/analysis/synonyms/english/mad"
 
 The response would be
->    {  
->    "responseHeader":{
->    "status":0,    "QTime":3},
->    "synonymMappings":{ 
->    "initArgs":{
->    "ignoreCase":true,      
->    "format":"solr"},
->    "initializedOn":"2014-12-16T22:44:05.33Z",
->    "managedMap":{
->    "mad":
->    ["angry", "upset"]}}}
+>     {  
+>     "responseHeader":{
+>     "status":0,    "QTime":3},
+>     "synonymMappings":{ 
+>     "initArgs":{
+>     "ignoreCase":true,      
+>     "format":"solr"},
+>     "initializedOn":"2014-12-16T22:44:05.33Z",
+>     "managedMap":{
+>     "mad":
+>     ["angry", "upset"]}}}
 
 Lastly, you can delete a mapping by sending a DELETE request to the managed endpoint.
 >    curl -X DELETE "http://localhost:8983/solr/mycollection/schema/analysis/stopwords/mad"
